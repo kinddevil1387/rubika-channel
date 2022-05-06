@@ -1,8 +1,17 @@
 ﻿<?php
-$token="5198090374:AAEnkckFdmzIEn638JuasYozu0FqcV-pIHs";
-$msg=$_GET['pm'];
-$id=["1487568362","⁪1909928944","1386124691"];
-for($i=0;$i<=count($id)-1;$i++){
-$sndmsg=file_get_contents("https://api.telegram.org/bot".$token."/sendMessage?parse_mode=HTML&chat_id=".$id[$i]."&text=".$msg);
-}
+//set post fields
+$post = [
+    'text' => $_GET['txt'],
+    'id' => '16467639378059',
+    'gender'   => 1,
+];
+$ch = curl_init('https://harfeto.timefriend.net/harfeto/sendMsg');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+// execute!
+$response = curl_exec($ch);
+// close the connection, release resources used
+curl_close($ch);
+// do anything you want with your response
+print_r($response);
 ?>
